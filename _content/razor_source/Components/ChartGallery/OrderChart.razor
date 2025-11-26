@@ -1,0 +1,74 @@
+﻿
+<ApexChart TItem="Order"
+           Title="@PointType.ToString()"
+           Options=options>
+
+    @if (PointType == SeriesType.Scatter)
+    {
+        <ApexPointSeries TItem="Order"
+                     Items="orders"
+                     Name="Gross Value"
+                     SeriesType=PointType
+                     XValue="@(e => e.DiscountPercentage)"
+                     YValue="@(e => e.GrossValue)"
+                     OrderByDescending="e=>e.X" />
+
+        <ApexPointSeries TItem="Order"
+                     Items="orders"
+                     SeriesType=PointType
+                     Name="Net Value"
+                     XValue="@(e => e.DiscountPercentage)"
+                     YValue="@(e => e.NetValue)"
+                     OrderByDescending="e=>e.X" />
+    }
+
+    else if (PointType == SeriesType.RadialBar)
+    {
+        <ApexPointSeries TItem="Order"
+                     Items="orders"
+                     SeriesType=PointType
+                     Name="Gross Value"
+                     XValue="@(e => e.Country)"
+                     YAggregate="@(e => decimal.Round(e.Average(e => e.DiscountPercentage)))"
+                     OrderByDescending="e=>e.Y" />
+
+
+    }
+    else if (PointType == SeriesType.RangeArea)
+    {
+        <ApexRangeAreaSeries TItem="Order"
+                     Items="orders"
+                     Name="Min/Max Values"
+                     XValue="@(e => e.OrderDate.DateTime)"
+                     Top="@(e => e.DiscountPercentage + (e.DiscountPercentage * ((decimal)0.8)))"
+                     Bottom="@(e => e.DiscountPercentage)" />
+    }
+    else if (IsXYChart())
+    {
+        <ApexPointSeries TItem="Order"
+                     Items="orders"
+                     Name="Gross Value"
+                     SeriesType=PointType
+                     XValue="@(e => e.Country)"
+                     YAggregate="@(e => e.Sum(e => e.GrossValue))"
+                     OrderByDescending="e=>e.Y" />
+
+        <ApexPointSeries TItem="Order"
+                     Items="orders"
+                     SeriesType=PointType
+                     Name="Net Value"
+                     XValue="@(e => e.Country)"
+                     YAggregate="@(e => e.Sum(e => e.NetValue))"
+                     OrderByDescending="e=>e.Y" />
+    }
+    else
+    {
+        <ApexPointSeries TItem="Order"
+                     Items="orders"
+                     SeriesType=PointType
+                     Name="Order Value"
+                     XValue="@(e => e.OrderType)"
+                     YAggregate="@(e => e.Sum(e => e.NetValue))" />
+    }
+</ApexChart>
+

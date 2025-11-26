@@ -1,0 +1,56 @@
+﻿<DemoContainer>
+    @if (projects == null)
+    {
+        <div class="text-center text-muted" style="min-height:300px">
+            <h3>Loading chart<span class="animated-dots"></span></h3>
+        </div>
+    }
+    else
+    {
+        <ApexChart TItem="Project"
+               Title="Projects"
+               Options=options
+               XAxisType="XAxisType.Datetime">
+            <ApexRangeSeries TItem="Project"
+                         Items="projects"
+                         XValue="@(e => e.Name)"
+                         YMinValue="@(e =>e.StartDate.ToUnixTimeMilliseconds())"
+                         YMaxValue="@(e =>e.EndDate.ToUnixTimeMilliseconds())" />
+        </ApexChart>
+    }
+
+
+</DemoContainer>
+
+@code {
+    private List<Project> projects;
+    private ApexChartOptions<Project> options;
+
+    protected override async Task OnInitializedAsync()
+    {
+        options = new ApexChartOptions<Project>
+            {
+                PlotOptions = new PlotOptions
+                {
+                    Bar = new PlotOptionsBar
+                    {
+                        Horizontal = true
+                    }
+                },
+                Tooltip = new ApexCharts.Tooltip
+                {
+                    X = new TooltipX
+                    {
+                        Format = "dd MMM yyyy HH:mm"
+                    }
+                }
+            };
+        projects = await LoadProjects();
+    }
+
+    private async Task<List<Project>> LoadProjects()
+    {
+        await Task.Delay(3000);
+        return SampleData.GetProjects();
+    }
+}

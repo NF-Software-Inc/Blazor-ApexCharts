@@ -1,0 +1,22 @@
+﻿<DemoContainer>
+    <ApexChart TItem="SupportIncident"
+               Title="Incident Severity"
+               >
+
+        @foreach (var source in incidents.GroupBy(e => e.Source))
+        {
+            <ApexPointSeries TItem="SupportIncident"
+                         Items="source.OrderBy(e=>e.WeekNumber)"
+                         Name="@source.Key.ToString()"
+                         SeriesType="SeriesType.Heatmap"
+                         XValue="@(e => e.WeekName)"
+                         YAggregate="@(e => (int)e.Average(a=>a.Severity))" />
+        }
+
+    </ApexChart>
+</DemoContainer>
+
+@code {
+    private List<SupportIncident> incidents { get; set; } = SampleData.GetSupportIncidents();
+   
+    }

@@ -1,0 +1,37 @@
+﻿<ApexChart TItem="BoxPlotSample"
+           Options=options
+           Title="BoxPlot">
+
+    <ApexBoxPlotSeries TItem="BoxPlotSample"
+                       Items="incidents"
+                       Name="incidents"
+                    XValue="@(e => e.Name)"
+                    Max="@(e => e.Max)"
+                    Min="@(e => e.Min)"
+                    Quantile1="@(e => e.Q1)"
+                    Quantile3="@(e => e.Q3)"
+                    Median="@(e => e.Median)"
+                       />
+
+
+</ApexChart>
+
+
+@code {
+    private List<BoxPlotSample> incidents { get; set; } = SampleData.GetBoxPlotData();
+    private ApexChartOptions<BoxPlotSample> options = new ApexChartOptions<BoxPlotSample>();
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        options.Chart = new Chart
+            {
+                Sparkline = new ChartSparkline
+                {
+                    Enabled = true
+                }
+            };
+
+    }
+        }
+ 

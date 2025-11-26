@@ -1,0 +1,69 @@
+﻿<Button OnClick="UpdateOptions" BackgroundColor=TablerColor.Primary>Update Options</Button>
+<Button OnClick="Reset" BackgroundColor=TablerColor.Danger>Reset Zoom</Button>
+
+<DemoContainer>
+    <ApexChart @ref=chart TItem="TimeSeries"
+               Title=@title
+               XAxisType="XAxisType.Datetime"
+               OnZoomed="Zoomed"
+               Options=options>
+
+        <ApexPointSeries TItem="TimeSeries"
+                         Items="generator.TimeSeries"
+                         Name="@seriesName"
+                         SeriesType="SeriesType.Line"
+                         XValue="@(e => e.Date)"
+                         YValue="@(e => e.Value)"
+                         OrderByDescending="e=>e.X"
+                         Stroke="@(new SeriesStroke { Width = 2, Color="#1F15E5"})" />
+    </ApexChart>
+</DemoContainer>
+
+@code {
+    private ApexChart<TimeSeries> chart;
+    private ApexChartOptions<TimeSeries> options;
+    private TimeSeriesGenerator generator = new TimeSeriesGenerator(100);
+
+    private ZoomOptions zoomOptions = new();
+    private string title = "Order Net Value";
+    private string seriesName = "Gross Value";
+    protected override void OnInitialized()
+    {
+
+        zoomOptions.Start = generator.TimeSeries.Min(e => e.Date).AddDays(5).ToUnixTimeMilliseconds();
+        zoomOptions.End = generator.TimeSeries.Min(e => e.Date).AddDays(15).ToUnixTimeMilliseconds();
+        options = new ApexChartOptions<TimeSeries>();
+    }
+
+    private void Zoomed(ZoomedData<TimeSeries> zoomedData)
+    {
+        if (zoomedData.IsZoomed)
+        {
+            zoomOptions = new ZoomOptions();
+            zoomOptions.Start = (decimal)zoomedData.XAxis.Min;
+            zoomOptions.End = (decimal)zoomedData.XAxis.Max;
+        }
+        else
+        {
+            zoomOptions = null;
+        }
+    }
+
+    private async Task Reset()
+    {
+        await chart.ResetSeriesAsync(true, true);
+    }
+    private async Task UpdateOptions()
+    {
+        var dateString = DateTime.Now.ToLongTimeString();
+
+        //Animations must be turned of or you will get a flickering
+        options.Chart.Animations = new Animations { Enabled = false };
+        options.Subtitle = new Subtitle { Text = "Options updated: " + dateString };
+
+        title = "Order Net Value " + dateString;
+        seriesName = "Gross Value " + dateString;
+                   
+        await chart.UpdateOptionsAsync(false, false, false, zoomOptions);
+    }
+}

@@ -1,0 +1,233 @@
+﻿<Navbar Background=NavbarBackground.Dark Direction=NavbarDirection.Vertical NavLinkMatch="Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All">
+
+    <a href="https://github.com/apexcharts/Blazor-ApexCharts" target=_blank class="navbar-brand navbar-brand-autodark">
+        <h3 class="">
+            Blazor ApexCharts
+            <Icon IconType=@Icons.Brand_github BackgroundColor=TablerColor.White />
+        </h3>
+    </a>
+    <NavbarMenu>
+        <NavbarMenuItem Href="" Text="Chart Gallery">
+            <MenuItemIcon>
+                <Icon class="icon" IconType="@Icons.Apps" />
+            </MenuItemIcon>
+        </NavbarMenuItem>
+
+        <NavbarMenuItem Href="chart-service" Text="Chart Service">
+            <MenuItemIcon>
+                <Icon class="icon" IconType="@Icons.Ghost" />
+            </MenuItemIcon>
+        </NavbarMenuItem>
+
+        <NavbarMenuItem Text="Chart Types">
+            <MenuItemIcon>
+                <Icon class="icon" IconType="@Icons.Chart_infographic" />
+            </MenuItemIcon>
+
+            <SubMenu>
+
+                <NavbarMenuItem Href="area-charts" Text="Area">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_area" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="bar-charts" Text="Bar">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_bar" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="boxplot-charts" Text="BoxPlot">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_candle" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="bubble-charts" Text="Bubble">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_scatter" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="candlestick-charts" Text="Candlestick">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_candle" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="donut-charts" Text="Donut">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_donut_3" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="funnel-charts" Text="Funnel">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Triangle_inverted" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="heatmap-charts" Text="Heatmap">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Grid_dots" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="line-charts" Text="Line">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_line" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+
+                <NavbarMenuItem Href="mixed-charts" Text="Mixed">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_area_line" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="pie-charts" Text="Pie">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_pie_3" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="radar-charts" Text="Radar">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_radar" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="radialbar-charts" Text="Radial bars">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_donut_4" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="rangebar-charts" Text="Range bar">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_arrows_vertical" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="scatter-charts" Text="Scatter">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_scatter" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="slope-charts" Text="Slope">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_line" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+
+                <NavbarMenuItem Href="rangearea-charts" Text="RangeArea">
+                    <MenuItemIcon>
+                        <Icon class="icon" IconType="@Icons.Chart_area_line" />
+                    </MenuItemIcon>
+                </NavbarMenuItem>
+            </SubMenu>
+        </NavbarMenuItem>
+
+        <NavbarMenuItem Text="Events">
+            <MenuItemIcon>
+                <Icon class="icon" IconType="@Icons.Bolt" />
+            </MenuItemIcon>
+            <SubMenu>
+                <NavbarMenuItem Text="Before Reset Zoom" Href="events/before-reset-zoom" />
+                <NavbarMenuItem Text="Before Zoom" Href="events/before-zoom" />
+                <NavbarMenuItem Text="Brush Scrolled" Href="events/brush-scrolled" />
+                <NavbarMenuItem Text="Chart Setup" Href="events/chart-setup" />
+                <NavbarMenuItem Text="Click" Href="events/click" />
+                <NavbarMenuItem Text="Data Point Hover" Href="events/data-point-hover" />
+                <NavbarMenuItem Text="Data Point Selection" Href="events/data-point-selection" />
+                <NavbarMenuItem Text="Legend Click" Href="events/legend-click" />
+                <NavbarMenuItem Text="Marker Click" Href="events/marker-click" />
+                <NavbarMenuItem Text="Mouse Hover" Href="events/mouse-hover" />
+                <NavbarMenuItem Text="Scrolled" Href="events/scrolled" />
+                <NavbarMenuItem Text="Selection" Href="events/selection" />
+                <NavbarMenuItem Text="XAxisLabelClick" Href="events/xaxis-label-click" />
+                <NavbarMenuItem Text="Zoomed" Href="events/zoomed" />
+            </SubMenu>
+        </NavbarMenuItem>
+
+        <NavbarMenuItem Text="Features">
+            <MenuItemIcon>
+                <Icon class="icon" IconType="@Icons.Ad" />
+            </MenuItemIcon>
+
+            <SubMenu>
+                <NavbarMenuItem Text="Annotations" Href="features/annotations" />
+                <NavbarMenuItem Text="Axis" Href="features/axis" />
+                <NavbarMenuItem Text="Blazor Options" Href="features/blazor-options" />
+
+                <NavbarMenuItem Text="Data" Href="features/chart-data" />
+                <NavbarMenuItem Text="Dynamic Series" Href="features/dynamic-series" />
+
+                <NavbarMenuItem Text="Export" Href="features/export" />
+                <NavbarMenuItem Text="Formatters" Href="features/formatters" />
+                <NavbarMenuItem Text="Group Points" Href="features/group-points" />
+                <NavbarMenuItem Text="Legend" Href="features/legend" />
+                <NavbarMenuItem Text="Localization" Href="features/localization" />
+                <NavbarMenuItem Text="Performance" Href="features/performance" />
+                <NavbarMenuItem Text="Responsive" Href="features/responsive" />
+                <NavbarMenuItem Text="Size" Href="features/chart-size" />
+                <NavbarMenuItem Text="State" Href="features/state" />
+                <NavbarMenuItem Text="Syncronized charts" Href="features/syncronized" />
+                <NavbarMenuItem Text="Toolbar" Href="features/toolbar" />
+                <NavbarMenuItem Text="Tooltip">
+                    <SubMenu>
+                        <NavbarMenuItem Text="Javascript" Href="features/tooltip-javascript" />
+                        <NavbarMenuItem Text="DotNet" Href="features/tooltip-dotnet" />
+                    </SubMenu>
+
+                </NavbarMenuItem>
+            </SubMenu>
+
+        </NavbarMenuItem>
+
+        <NavbarMenuItem Text="Methods">
+            <MenuItemIcon>
+                <Icon class="icon" IconType="@Icons.Affiliate" />
+            </MenuItemIcon>
+            <SubMenu>
+                <NavbarMenuItem Text="Annotations" Href="methods/annotations" />
+                <NavbarMenuItem Text="Append Data" Href="methods/append-data" />
+                <NavbarMenuItem Text="Data Uri" Href="methods/data-uri" />
+                <NavbarMenuItem Text="Get SVG String" Href="methods/get-svg-string" >
+                    Get SVG string
+                    <span class="badge badge-sm bg-danger-lt ms-auto">WASM Only</span>
+                </NavbarMenuItem>
+                <NavbarMenuItem Text="Highlight Series" Href="methods/highlight-series" />
+
+                <NavbarMenuItem Text="Render" Href="methods/render" />
+                <NavbarMenuItem Text="Toggle Data Point" Href="methods/toggle-data-point" />
+                <NavbarMenuItem Text="Update Options" Href="methods/update-options" />
+                <NavbarMenuItem Text="Update Series" Href="methods/update-series" />
+                <NavbarMenuItem Text="Show/Hide Series" Href="methods/show-hide-series" />
+                <NavbarMenuItem Text="Zoom X" Href="methods/zoomx" />
+            </SubMenu>
+        </NavbarMenuItem>
+
+
+
+        <NavbarMenuItem Href="chart-themes" Text="Themes">
+            <MenuItemIcon>
+                <Icon class="icon" IconType="@Icons.Color_swatch" />
+            </MenuItemIcon>
+        </NavbarMenuItem>
+
+        <NavbarMenuItem Text="Global Options" OnClick="ShowGlobalOptions">
+            <MenuItemIcon>
+                <Icon IconType="@Icons.Theme_light_dark" />
+            </MenuItemIcon>
+        </NavbarMenuItem>
+
+
+    </NavbarMenu>
+</Navbar>
+
+
+

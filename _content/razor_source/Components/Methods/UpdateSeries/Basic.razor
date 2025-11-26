@@ -1,0 +1,58 @@
+﻿
+<DemoContainer>
+
+    <Button class="mb-2" OnClick=UpdateChartSeries BackgroundColor="TablerColor.Primary">Update Series</Button>
+
+    @if (forecasts != null)
+    {
+        <ApexChart TItem="WeatherForecast"
+                   Title="Temp C"
+                   XAxisType="XAxisType.Datetime"
+        @ref="chart">
+
+            <ApexPointSeries TItem="WeatherForecast"
+                             Items="forecasts"
+                             Name="Temp C"
+                             XValue="@(e => e.Date.ToUnixTimeMilliseconds())"
+                             YAggregate="@(e => e.Sum(f => f.TemperatureC))"
+                             SeriesType="SeriesType.Bar"
+                             Color="#005ba3" />
+        </ApexChart>
+    }
+
+
+</DemoContainer>
+
+<div>
+    <Table Items="forecasts">
+        <Column Item="WeatherForecast" Property="e=> e.Date">
+            <Template>
+                @context.Date.ToString("D")
+            </Template>
+        </Column>
+        <Column Item="WeatherForecast" Property="e=> e.TemperatureC" />
+        <Column Item="WeatherForecast" Property="e=> e.Summary" />
+    </Table>
+</div>
+@code {
+    private List<WeatherForecast> forecasts { get; set; }
+    private ApexChart<WeatherForecast> chart;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDataAsync();
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task LoadDataAsync()
+    {
+        forecasts = (await SampleData.GetForecastAsync(DateTime.Today)).ToList();
+    }
+
+    private async Task UpdateChartSeries()
+    {
+        await LoadDataAsync();
+        await chart.UpdateSeriesAsync(true);
+    }
+}

@@ -1,0 +1,52 @@
+﻿<DemoContainer>
+    <ApexChart TItem="Order"
+               Title="Order Net Value"
+               Options=options>
+
+        <ApexPointSeries TItem="Order"
+                         Items="Orders"
+                         Name="Value"
+                         XValue="@(e => e.Country)"
+                         YAggregate="@(e => e.Sum(e => e.GrossValue))"
+                         SeriesType="SeriesType.Bar" />
+
+    </ApexChart>
+</DemoContainer>
+
+@code {
+    private List<Order> Orders { get; set; } = SampleData.GetOrders();
+    private ApexChartOptions<Order> options { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+
+        options.States = new States
+            {
+                Active = new StatesActive
+                {
+                    Filter = new StatesFilter
+                    {
+                        Type = StatesFilterType.none
+
+                    }
+                },
+               Normal = new StatesNormal
+               {
+                    Filter = new StatesFilter
+                    {
+                        Type = StatesFilterType.lighten,
+                        Value = 0.1
+                    }
+               },
+                Hover = new StatesHover
+                {
+                    Filter = new StatesFilter
+                    {
+                        Type = StatesFilterType.darken,
+                        Value = 0.3
+                    }
+                }
+
+            };
+    }
+}

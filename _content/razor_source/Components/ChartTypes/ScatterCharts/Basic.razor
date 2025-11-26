@@ -1,0 +1,25 @@
+﻿<DemoContainer>
+    <ApexChart TItem="Order"
+               Title="Scatter Sample">
+
+        <ApexPointSeries TItem="Order"
+                         Items="orders"
+                         Name="% Gross"
+                         SeriesType="SeriesType.Scatter"
+                         XValue="@(e => e.DiscountPercentage)"
+                         YValue="@(e => e.GrossValue)"
+                         OrderByDescending="e=>e.X" />
+
+        <ApexPointSeries TItem="Order"
+                         Items="orders"
+                         SeriesType="SeriesType.Scatter"
+                         Name="% Net"
+                         XValue="@(e => e.DiscountPercentage)"
+                         YValue="@(e => e.NetValue)"
+                         OrderByDescending="e=>e.X" />
+    </ApexChart>
+</DemoContainer>
+
+@code {
+    private List<Order> orders { get; set; } = SampleData.GetOrders();
+    }
