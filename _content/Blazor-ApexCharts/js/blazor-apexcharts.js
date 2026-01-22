@@ -1,4 +1,4 @@
-﻿import ApexCharts from './apexcharts.esm.js?ver=6.0.0.0'
+﻿import ApexCharts from './apexcharts.esm.js?ver=6.1.0.0'
 
 // export function for Blazor to point to the window.blazor_apexchart. To be compatible with the most JS Interop calls the window will be return.
 export function get_apexcharts() {
@@ -313,8 +313,14 @@ window.blazor_apexchart = {
         if (options.tooltip != undefined && options.tooltip.customTooltip == true) {
             options.tooltip.custom = function ({ series, seriesIndex, dataPointIndex, w }) {
 
+                if (dataPointIndex == null) {
+                    dataPointIndex = seriesIndex;
+                    seriesIndex = 0
+                }
+
+
                 var selection = {
-                    dataPointIndex: dataPointIndex,
+                    dataPointIndex: dataPointIndex || 0,
                     seriesIndex: seriesIndex
                 };
 
